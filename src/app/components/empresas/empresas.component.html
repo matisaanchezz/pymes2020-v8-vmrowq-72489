@@ -1,8 +1,9 @@
 <div class="container">
-  <h3>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h3>
+  <h3>{{Titulo}} 
+    <small>{{TituloAccionABMC[AccionABMC]}}</small> </h3> 
 
   <div *ngIf="AccionABMC == 'L'">
-    <!-- Botones -->
+    <!-- Botones Consulta y Agregar -->
 		<div class="row justify-content-center">
 			<button type="button" class="btn btn-primary" (click)="GetEmpresa()">
             <span class="fas fa-search"> </span> Consultar
@@ -34,13 +35,13 @@
               <td>{{item.FechaFundacion}}</td>
           </tr>
         </tbody>
-      </table>
+      </table><!--
       <div class="row justify-content-center">
 			<button type="button" class="btn btn-primary" (click)="Agregar()">
             <span class="fas fa-plus"> </span> 
             Agregar
         </button>
-		</div>
+		</div> -->
   </div>
 
 
@@ -52,15 +53,15 @@
                     class="text-danger">*</span></label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" formControlName="RazonSocial" 
-         [ngClass]="{'is-invalid': (FormReg.controls.Nombre.touched || submitted)  
-            && FormReg.controls.Nombre.errors}" />
+         [ngClass]="{'is-invalid': (FormReg.controls.RazonSocial.touched || submitted)  
+            && FormReg.controls.RazonSocial.errors}" />
 
-				<span class="text-danger" *ngIf="(FormReg.controls.Nombre.touched || submitted) 
-                        && FormReg.controls.Nombre.errors?.required">
+				<span class="text-danger" *ngIf="(FormReg.controls.RazonSocial.touched || submitted) 
+                        && FormReg.controls.RazonSocial.errors?.required">
                     Dato requerido.
                 </span>
-                <span class="text-danger" *ngIf="(FormReg.controls.Nombre.touched || submitted) 
-                       && (FormReg.controls.Nombre.errors?.minlength || FormReg.controls.Nombre.errors?.maxlength) ">
+                <span class="text-danger" *ngIf="(FormReg.controls.RazonSocial.touched || submitted) 
+                       && (FormReg.controls.RazonSocial.errors?.minlength || FormReg.controls.RazonSocial.errors?.maxlength) ">
                     Dato texto, 1 a 50 caracteres.
                 </span>
 			</div>
@@ -73,16 +74,16 @@
 			<div class="col-sm-6">
 				
         
-        <input type="text" class="form-control" formControlName="FechaFundacion" 
-         [ngClass]="{'is-invalid': (FormReg.controls.FechaNacimiento.touched || submitted)  
-            && FormReg.controls.FechaNacimiento.errors}" />
+        <input type="date" class="form-control" formControlName="FechaFundacion" 
+         [ngClass]="{'is-invalid': (FormReg.controls.FechaFundacion.touched || submitted)  
+            && FormReg.controls.FechaFundacion.errors}" />
         
-				<span class="text-danger" *ngIf="(FormReg.controls.FechaNacimiento.touched || submitted) 
-                        && FormReg.controls.FechaNacimiento.errors?.required">
+				<span class="text-danger" *ngIf="(FormReg.controls.FechaFundacion.touched || submitted) 
+                        && FormReg.controls.FechaFundacion.errors?.required">
                     Dato requerido.
                 </span>
         
-        <span class="text-danger" *ngIf="FormReg.controls.FechaNacimiento.errors?.pattern">
+        <span class="text-danger" *ngIf="FormReg.controls.FechaFundacion.errors?.pattern">
                     Dato fecha, formato dd/mm/aaaa.
         </span>
         
@@ -94,16 +95,16 @@
 			<label class="col-form-label col-sm-2 col-sm-offset-2" for="CantidadEmpleados">Cantidad de Empleados<span
                     class="text-danger">*</span></label>
 			<div class="col-sm-6">
-				<input type="text" class="form-control" formControlName="CantidadEmpleados" 
-         [ngClass]="{'is-invalid': (FormReg.controls.Telefono.touched || submitted)  
-            && FormReg.controls.Telefono.errors}" />
+				<input type="number" class="form-control" formControlName="CantidadEmpleados" 
+         [ngClass]="{'is-invalid': (FormReg.controls.CantidadEmpleados.touched || submitted)  
+            && FormReg.controls.CantidadEmpleados.errors}" />
 
-				<span class="text-danger" *ngIf="(FormReg.controls.Telefono.touched || submitted) 
-                        && FormReg.controls.Telefono.errors?.required">
+				<span class="text-danger" *ngIf="(FormReg.controls.CantidadEmpleados.touched || submitted) 
+                        && FormReg.controls.CantidadEmpleados.errors?.required">
                     Dato requerido.
                 </span>   
-        <span class="text-danger" *ngIf="(FormReg.controls.Telefono.touched || submitted) 
-                       && (FormReg.controls.Telefono.errors?.pattern)">
+        <span class="text-danger" *ngIf="(FormReg.controls.CantidadEmpleados.touched || submitted) 
+                       && (FormReg.controls.CantidadEmpleados.errors?.pattern)">
                     Dato numerico.
                 </span>
 			</div>
@@ -121,6 +122,11 @@
             <span class="fas fa-undo"></span> {{AccionABMC=='C' ? 'Volver' : 'Cancelar'}}
         </button>
 		</div>
+
+    <!--texto: Revisar los datos ingresados...-->
+    <div id="divMsjFormContactosistro" *ngIf="submitted && FormContactos.invalid" class="row alert alert-danger">
+      <span class="fas fa-exclamation-sign"></span>{{Mensajes['RD']}}
+    </div>
 	</form>
 
 </div>

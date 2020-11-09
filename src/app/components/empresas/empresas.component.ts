@@ -18,6 +18,9 @@ export class EmpresasComponent implements OnInit {
     L: "(Listado)"
   };
   AccionABMC = "L";
+  Mensajes = {
+    RD: " Revisar los datos ingresados..."
+  };
 
   Lista: Empresa[] = [];
   FormReg: FormGroup;
@@ -56,16 +59,15 @@ export class EmpresasComponent implements OnInit {
 
   Grabar() {
     this.submitted = true;
-    // verificar que los validadores esten OK
     if (this.FormReg.invalid) {
       return;
     }
     const itemCopy = { ...this.FormReg.value };
         
     //convertir fecha de string dd/MM/yyyy a ISO
-    var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("/");
+    var arrFecha = itemCopy.FechaFundacion.substr(0, 10).split("/");
     if (arrFecha.length == 3)
-      itemCopy.FechaNacimiento = new Date(
+      itemCopy.FechaFundacion = new Date(
         arrFecha[2],
         arrFecha[1] - 1,
         arrFecha[0]
@@ -73,7 +75,6 @@ export class EmpresasComponent implements OnInit {
     
     // agregar post
 
-  
     if (itemCopy.IdEmpresa == 0 || itemCopy.IdEmpresa == null) {
       itemCopy.IdEmpresa = 0;
       this.empresasService.post(itemCopy).subscribe((res: any) => {
