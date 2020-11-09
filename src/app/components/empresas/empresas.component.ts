@@ -74,12 +74,14 @@ export class EmpresasComponent implements OnInit {
     // agregar post
 
   
+    if (itemCopy.IdEmpresa == 0 || itemCopy.IdEmpresa == null) {
+      itemCopy.IdEmpresa = 0;
       this.empresasService.post(itemCopy).subscribe((res: any) => {
         this.Volver();
         this.modalDialogService.Alert("Registro agregado correctamente.");
         this.GetEmpresa();
       });
-    
+    }
   }
 
   Volver() {
